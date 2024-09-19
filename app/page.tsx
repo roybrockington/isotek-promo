@@ -26,7 +26,7 @@ export default function Home() {
                 <h1 className="mb-5 text-white text-4xl font-bold">
                     V5 Sirius Giveaway
                 </h1>
-                <div className={` ${isOpen ? 'hidden':''} flex flex-col gap-8 row-start-2 items-center sm:items-start`}>
+                <div className={` ${isOpen ? 'hidden':''} flex flex-col gap-8 items-center`}>
 
                     <p className="text-white text-center">From October 1st, tell us about your experience demoing IsoTek at your favourite home audio retailer for a chance to win a <span className="font-bold">V5 Sirius 6-way mains conditioner</span>!</p>
                     <Image 
