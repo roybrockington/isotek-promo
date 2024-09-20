@@ -11,16 +11,6 @@ const Intro = () => {
                 width={460} 
                 height={120}/>
             <p className="text-white text-center">Complete our registration form before <span className="underline">October 31st</span> to enter...</p>
-            <div className="flex items-start mb-5">
-                <button 
-                    onClick={() => setIsOpen()}
-                    type="button" 
-                    className="text-white bg-isotek hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                >
-                    Enter
-                </button>
-            </div>
-
         </div>
     )
 }
