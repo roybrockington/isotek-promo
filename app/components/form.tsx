@@ -13,6 +13,9 @@ const Form = () => {
     const [data, setData] = useState({
         name: '',
         email: '',
+        address: '',
+        retailer: '',
+        demo: '',
     })
 
     const handleChange = (e: any) => {
@@ -25,11 +28,13 @@ const Form = () => {
 
     const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        console.log(data)
         try {
             const response = await fetch('/api/register', {
                 method: 'post',
-                body: data as any,
+                headers: {
+                    'content-type': 'application/json',
+                },
+                body: JSON.stringify(data),
             })
 
             if (!response.ok) {
@@ -73,8 +78,8 @@ const Form = () => {
                 >
                     <div className="mb-5">
                         <label htmlFor="name" className="block mb-2 text-sm font-medium text-isotek dark:text-white">Your name</label>
-                        <input 
-                            name="name" 
+                        <input
+                            name="name"
                             type="text" 
                             id="name" 
                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
@@ -86,11 +91,19 @@ const Form = () => {
 
                     <div className="mb-5">
                         <label htmlFor="email" className="block mb-2 text-sm font-medium text-isotek dark:text-white">Your email</label>
-                        <input type="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="email@example.com" required />
+                        <input 
+                            name="email"
+                            value={data.email}
+                            onChange={e => handleChange(e)}
+                            type="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="email@example.com" required />
                     </div>
                     <div className="mb-5">
                         <label htmlFor="address" className="block mb-2 text-sm font-medium text-isotek dark:text-white">Your address</label>
-                        <textarea id="address" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Address" required />
+                        <textarea 
+                            name="address"
+                            value={data.address}
+                            onChange={e => handleChange(e)}
+                            id="address" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Address" required />
                     </div>
 
                     <div className="flex-grow border-t border-gray-600 my-8"></div>
@@ -98,14 +111,21 @@ const Form = () => {
                     <div className="mb-5">
                         <label htmlFor="retailer" className="block mb-2 text-sm font-medium text-isotek dark:text-white">Retailer visited</label>
                         <input 
+                            name="retailer"
                             type="text" 
                             id="retailer" 
+                            value={data.retailer}
+                            onChange={e => handleChange(e)}
                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
                             placeholder="e.g. Winchester Audio" required />
                     </div>
                     <div className="mb-5">
                         <label htmlFor="demo" className="block mb-2 text-sm font-medium text-isotek dark:text-white">What did you demo?</label>
-                        <textarea id="demo" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="e.g. IsoTek Sigmas V5 and Polaris powerblock" required />
+                        <textarea 
+                            name="demo"
+                            value={data.demo}
+                            onChange={e => handleChange(e)}
+                            id="demo" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="e.g. IsoTek Sigmas V5 and Polaris powerblock" required />
                     </div>
                     <div className="flex-grow border-t border-gray-600 my-8"></div>
                     <div className="flex items-start mb-5">
@@ -118,6 +138,8 @@ const Form = () => {
                     </div>
                     <div className="flex justify-center mb-5">
                         <button type="submit" className="text-white bg-isotek hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+                        <button className="text-white bg-isotek hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                            type='button' onClick={()=>console.log(data)}>test</button>
                     </div>
                 </motion.form>
             }

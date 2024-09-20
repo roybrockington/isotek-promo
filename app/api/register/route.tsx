@@ -8,16 +8,14 @@ export async function POST(request) {
 
     const username = process.env.MAIL_USERNAME
     const password = process.env.MAIL_PASSWORD
-    const myEmail = process.env.MAIL_TARGET
 
     console.log("dealing with request")
-    console.log(formData[0].name)
-    const formData = await request.formData()
-    const name = formData[0].name
-    const email = 'test' //formData.get('email')
-/*    const address = formData.get('address')
-    const retailer = formData.get('retailer')
-    const demo = formData.get('demo')*/
+    const data = await request.json()
+    const name = data.name
+    const email = data.email
+    const address = data.address
+    const retailer = data.retailer
+    const demo = data.demo
 
     // create transporter object
     const transporter = nodemailer.createTransport({
@@ -38,11 +36,15 @@ export async function POST(request) {
 
         const mail = await transporter.sendMail({
             from: username,
-            to: myEmail,
+            to: ([process.env.MAIL_SCV, process.env.MAIL_ISOTEK] as any),
             replyTo: email,
             subject: `V5 Sirius Giveaway Entry from ${email}`,
             html: `
             <p>Name: ${name} </p>
+            <p>Email: ${email} </p>
+            <p>Address: ${address} </p>
+            <p>Retailer: ${retailer} </p>
+            <p>Demo: ${demo} </p>
             `,
         })
 
