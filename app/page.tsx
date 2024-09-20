@@ -1,12 +1,12 @@
 "use client"
 
-import Image from "next/image"
 import Link from "next/link";
-import sirius from "./assets/sirius.png"
 import { motion, useCycle } from "framer-motion"
+import Header from "./components/header";
+import Intro from "./components/intro";
 
 export default function Home() {
-    const [isOpen, setIsOpen] = useCycle(false,true)
+    const [isOpen, setIsOpen] = useCycle(false, true)
     const variants = {
         open: { opacity: 1, x: 0, transition: { staggerChildren: 0.07, delayChildren: 0.2 }},
         closed: { opacity: 0, x: "-100%" },
@@ -15,36 +15,10 @@ export default function Home() {
     return (
         <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
             <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-                <Image
-                    className="dark:invert"
-                    src="https://isoteksystems.com/wp-content/uploads/2021/02/Isotek_Logo_neg.svg"
-                    alt="IsoTek"
-                    width={160}
-                    height={38}
-                    priority
-                />
-                <h1 className="mb-5 text-white text-4xl font-bold">
-                    V5 Sirius Giveaway
-                </h1>
-                <div className={` ${isOpen ? 'hidden':''} flex flex-col gap-8 items-center`}>
-
-                    <p className="text-white text-center">From October 1st, tell us about your experience demoing IsoTek at your favourite home audio retailer for a chance to win a <span className="font-bold">V5 Sirius 6-way mains conditioner</span>!</p>
-                    <Image 
-                        src={sirius}
-                        alt="Sirius V5 5-way mains conditioner block"
-                        width={460} 
-                        height={120}/>
-                    <p className="text-white text-center">Complete our registration form before <span className="underline">October 31st</span> to enter...</p>
-                    <div className="flex items-start mb-5">
-                        <button 
-                            onClick={() => setIsOpen()}
-                            type="button" 
-                            className="text-white bg-isotek hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                        >
-                            Enter
-                        </button>
-                    </div>
-                </div>
+                    <Header />
+                    {!isOpen &&
+                        <Intro />
+                    }
                 <motion.form 
                     initial={"initial"}
                     variants={variants}
