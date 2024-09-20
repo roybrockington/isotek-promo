@@ -1,10 +1,9 @@
-import { NextResponse, NextRequest } from 'next/server'
+import { NextResponse } from 'next/server'
 import nodemailer from 'nodemailer'
 
 // Handles POST requests to /api
 
-
-export async function POST(request) {
+export async function POST(request: any) {
 
     const username = process.env.MAIL_USERNAME
     const password = process.env.MAIL_PASSWORD
@@ -33,10 +32,9 @@ export async function POST(request) {
     });
 
     try {
-
         const mail = await transporter.sendMail({
-            from: username,
-            to: ([process.env.MAIL_SCV, process.env.MAIL_ISOTEK] as any),
+            from: '"SCV x IsoTek" noreply@scvlabs.co.uk',
+            to: ([process.env.MAIL_SCV, process.env.MAIL_ISOTEK] as string[]),
             replyTo: email,
             subject: `V5 Sirius Giveaway Entry from ${email}`,
             html: `
@@ -52,7 +50,7 @@ export async function POST(request) {
 
     } catch (error) {
         console.log(error)
-        NextResponse.status(500).json({ message: "COULD NOT SEND MESSAGE" })
+        NextResponse.json({ message: "COULD NOT SEND MESSAGE" })
     }
 
 
