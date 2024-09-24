@@ -30,7 +30,7 @@ const Terms = ({modal, setModal}) => {
                             <li>Notification and response: Winners will be notified by email and announced on social media. The Winner must respond by email within three (3) calendar days of the winner announcement and provide a valid shipping address.  If the winner has not responded by that time, a new winner will be selected.</li>
 
                             <li>Disqualification. We reserve the right to remove entries which are believed to be fraudulent or invalid. Disqualification may result from:</li>
-                            <ol type="a">
+                            <ol className="list-disc list-inside">
                                 <li>The failure of a potential winner to respond to email notification within three (3) calendar days after the announcement of winning the giveaway</li>
                                 <li>The return of the winning email announcement as undeliverable</li>
                                 <li>The return of any communication or prize as undeliverable</li>
@@ -42,13 +42,13 @@ const Terms = ({modal, setModal}) => {
                             <li>Prize delivery: Please allow 1-2 weeks for your prize to arrive. If you haven’t received your prize and it has been at least 10 business days since the winner was announced, contact SCV Distribution for more information.</li>
                         </ol>
                     </div>
-                    <div className="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+                    <div className="flex items-center justify-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
                         <button 
                             type="button" 
                             onClick={() => setModal(false)}
                             className="text-white bg-isotek hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                         >
-                            Accept
+                            Close
                         </button>
                     </div>
                 </div>

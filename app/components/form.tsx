@@ -1,7 +1,10 @@
+"use client"
+
 import { motion, useCycle } from "framer-motion"
 import Intro from './intro'
 import { useState } from "react"
 import Terms from "./terms"
+import { useRouter } from "next/navigation"
 
 const variants = {
     open: { opacity: 1, x: 0, transition: { staggerChildren: 0.07, delayChildren: 0.2 }},
@@ -18,6 +21,8 @@ const Form = () => {
         retailer: '',
         demo: '',
     })
+
+    const router = useRouter()
 
     const [modal, setModal] = useState(false)
 
@@ -47,7 +52,8 @@ const Form = () => {
             const responseData = await response.json()
             console.log(responseData['message'])
 
-            alert('Message successfully sent')
+           // alert('Message successfully sent') // show confirmation page
+            router.push('/success')
         } catch (err) {
             console.error(err)
             alert("Error, please try resubmitting the form")

@@ -14,7 +14,6 @@ const Header = () => {
                 <h1 className="mb-5 text-white text-4xl font-bold">
                     V5 Sirius Giveaway
                 </h1>
-            
         </div>
     )
 }
