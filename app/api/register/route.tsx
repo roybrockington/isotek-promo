@@ -1,7 +1,15 @@
 import { NextResponse } from 'next/server'
 import nodemailer from 'nodemailer'
+import type { NextApiRequest, NextApiResponse } from 'next'
+import {google} from "googleapis"
 
 // Handles POST requests to /api
+type SheetForm = {
+    name: string
+    email: string
+    phone: string
+    message: string
+}
 
 export async function POST(request: any) {
 

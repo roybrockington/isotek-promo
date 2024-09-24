@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Header from "./components/header";
 import Form from "./components/form";
+import Terms from "./components/terms";
 
 export default function Home() {
     return (

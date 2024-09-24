@@ -1,6 +1,7 @@
 import { motion, useCycle } from "framer-motion"
 import Intro from './intro'
 import { useState } from "react"
+import Terms from "./terms"
 
 const variants = {
     open: { opacity: 1, x: 0, transition: { staggerChildren: 0.07, delayChildren: 0.2 }},
@@ -17,6 +18,8 @@ const Form = () => {
         retailer: '',
         demo: '',
     })
+
+    const [modal, setModal] = useState(false)
 
     const handleChange = (e: any) => {
         setData(prev => ({
@@ -53,6 +56,7 @@ const Form = () => {
 
     return (
         <div>
+            <Terms modal={modal} setModal={setModal} />
             {!isOpen && 
                 <div>
                     <Intro />
@@ -60,7 +64,7 @@ const Form = () => {
                         <button 
                             onClick={() => setIsOpen()}
                             type="button" 
-                            className="text-white bg-isotek hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                            className="text-white bg-isotek hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                         >
                             Enter
                         </button>
@@ -133,7 +137,7 @@ const Form = () => {
                             <input id="remember" type="checkbox" value="" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" required />
                         </div>
                         <label htmlFor="remember" className="ms-2 text-sm font-medium text-white">
-                            Agree to terms &amp; conditions
+                            Agree to <span onClick={()=>setModal(true)} className="underline">terms &amp; conditions</span>
                         </label>
                     </div>
                     <div className="flex justify-center mb-5">
